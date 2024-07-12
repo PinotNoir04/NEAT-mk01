@@ -20,14 +20,14 @@ class Bird(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
 
-        self.images =  [pygame.image.load('assets/sprites/bluebird-upflap.png').convert_alpha(),
-                        pygame.image.load('assets/sprites/bluebird-midflap.png').convert_alpha(),
-                        pygame.image.load('assets/sprites/bluebird-downflap.png').convert_alpha()]
+        self.images =  [pygame.image.load('src/assets/bluebird-upflap.png').convert_alpha(),
+                        pygame.image.load('src/assets/bluebird-midflap.png').convert_alpha(),
+                        pygame.image.load('src/assets/bluebird-downflap.png').convert_alpha()]
 
         self.speed = SPEED
 
         self.current_image = 0
-        self.image = pygame.image.load('assets/sprites/bluebird-upflap.png').convert_alpha()
+        self.image = pygame.image.load('src/assets/bluebird-upflap.png').convert_alpha()
         self.mask = pygame.mask.from_surface(self.image)
 
         self.rect = self.image.get_rect()
@@ -57,7 +57,7 @@ class Pipe(pygame.sprite.Sprite):
     def __init__(self, inverted, xpos, ysize):
         pygame.sprite.Sprite.__init__(self)
 
-        self. image = pygame.image.load('assets/sprites/pipe-green.png').convert_alpha()
+        self. image = pygame.image.load('src/assets/pipe-green.png').convert_alpha()
         self.image = pygame.transform.scale(self.image, (PIPE_WIDTH, PIPE_HEIGHT))
 
 
@@ -83,7 +83,7 @@ class Ground(pygame.sprite.Sprite):
     
     def __init__(self, xpos):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load('assets/sprites/base.png').convert_alpha()
+        self.image = pygame.image.load('src/assets/base.png').convert_alpha()
         self.image = pygame.transform.scale(self.image, (GROUND_WIDTH, GROUND_HEIGHT))
 
         self.mask = pygame.mask.from_surface(self.image)
@@ -98,7 +98,7 @@ def offscreen(sprite):
     return sprite.rect[0] < -(sprite.rect[2])
 
 def generate_pipes(xpos):
-    size = random.randint(100, 200)
+    size = random.randint(100, 300)
     pipe = Pipe(False, xpos, size)
     pipe_inverted = Pipe(True, xpos, HEIGHT - size - PIPE_GAP)
     return pipe, pipe_inverted
@@ -108,7 +108,7 @@ pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Flappy Bird')
 
-BACKGROUND = pygame.image.load('assets/sprites/background-night.png')
+BACKGROUND = pygame.image.load('src/assets/background-night.png')
 BACKGROUND = pygame.transform.scale(BACKGROUND, (WIDTH, HEIGHT))
 
 bird_group = pygame.sprite.Group()
